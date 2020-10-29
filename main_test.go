@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestCheckValidEmail_MissingAt(t *testing.T) {
@@ -52,23 +53,23 @@ func TestDeDupeMaintsOriginalOrder_RemovingInvalidEmails(t *testing.T) {
 func TestDeDupeEmailsDefaultValues(t *testing.T) {
 	emails, _ := generateEmails(0, 0)
 	dedupedEmails := dedupe(emails)
-	assert.Equal(t, len(dedupedEmails), 50000, "Deduped all 50000 duplicates")
+	assert.Equal(t, 50000, len(dedupedEmails), "Deduped all 50000 duplicates")
 }
 
 func TestDeDupeEmailsSpecificEmailAndDuplicateCounts(t *testing.T) {
 	emails, _ := generateEmails(1128, 0.3)
 	dedupedEmails := dedupe(emails)
-	assert.Equal(t, len(dedupedEmails), 790, "Deduped all 338 duplicates")
+	assert.Equal(t, 790, len(dedupedEmails), "Deduped all 338 duplicates")
 }
 
 func TestDeDupeEmailsSpecifiedDuplicatePercent(t *testing.T) {
 	emails, _ := generateEmails(0, 0.8)
 	dedupedEmails := dedupe(emails)
-	assert.Equal(t, len(dedupedEmails), 20000, "Deduped all 80000 duplicates")
+	assert.Equal(t, 20000, len(dedupedEmails), "Deduped all 80000 duplicates")
 }
 
 func TestDeDupeInValidEmails(t *testing.T) {
 	emails := []string{"valid@email.com", "invalidemail", "real@email.com"}
 	dedupedEmails := dedupe(emails)
-	assert.Equal(t, len(dedupedEmails), 2, "Deduped emails with an invalid email should return a length of 2")
+	assert.Equal(t, 2, len(dedupedEmails), "Deduped emails with an invalid email should return a length of 2")
 }

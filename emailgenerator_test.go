@@ -1,18 +1,19 @@
 package main
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGenerateNegativeEmails(t *testing.T) {
 	_, err := generateEmails(-1, 0)
-	assert.Error(t, err, "Received expected error when -1 email count")
+	assert.Error(t, err, "Didn't receive expected error when -1 email count")
 }
 
 func TestGenerateNegativeDuplicatePercentage(t *testing.T) {
 	_, err := generateEmails(0, -1)
-	assert.Error(t, err, "Received expected error when -1 email count")
+	assert.Error(t, err, "Didn't receive expected error when -1 email count")
 }
 
 func TestGenerateGreaterDuplicatePercentage(t *testing.T) {
@@ -24,14 +25,14 @@ func TestGenerateDefaultEmails(t *testing.T) {
 	emails, _ := generateEmails(0, 0)
 	assert.EqualValues(t, 100000, len(emails), "Email count should match 100000")
 	dupeCount := GetDuplicateCount(emails)
-	assert.EqualValues(t, dupeCount, 50000, "Duplicate count should be 50000")
+	assert.EqualValues(t, 50000, dupeCount, "Duplicate count should be 50000")
 }
 
 func TestGenerateSpecifiedEmailCount(t *testing.T) {
 	emails, _ := generateEmails(380, 0)
 	assert.EqualValues(t, 380, len(emails), "Email count should match 380")
 	dupeCount := GetDuplicateCount(emails)
-	assert.EqualValues(t, dupeCount, 190, "Duplicate count should be 190")
+	assert.EqualValues(t, 190, dupeCount, "Duplicate count should be 190")
 }
 
 func TestGenerateSpecifiedDuplicatePercent(t *testing.T) {
