@@ -13,7 +13,7 @@ func TestGenerateNegativeEmails(t *testing.T) {
 
 func TestGenerateNegativeDuplicatePercentage(t *testing.T) {
 	_, err := generateEmails(0, -1)
-	assert.Error(t, err, "Didn't receive expected error when -1 email count")
+	assert.Error(t, err, "Didn't receive expected error when -1 duplicate count")
 }
 
 func TestGenerateGreaterDuplicatePercentage(t *testing.T) {
@@ -36,7 +36,7 @@ func TestGenerateSpecifiedEmailCount(t *testing.T) {
 }
 
 func TestGenerateSpecifiedDuplicatePercent(t *testing.T) {
-	emails, _ := generateEmails(0, 0)
+	emails, _ := generateEmails(0, 0.5)
 	assert.EqualValues(t, 100000, len(emails), "Email count should match 100000")
 	dupeCount := GetDuplicateCount(emails)
 	assert.EqualValues(t, 50000, dupeCount, "Duplicate count should be 50000")
