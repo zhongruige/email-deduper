@@ -1,10 +1,12 @@
 package main
 
 import (
-	"gopkg.in/yaml.v3"
 	"io/ioutil"
+
+	"gopkg.in/yaml.v3"
 )
 
+// EmailDeduperConfig maps the config values to a Go struct
 type EmailDeduperConfig struct {
 	GenerateEmailCount  int     `yaml:"GENERATE_EMAIL_COUNT"`
 	DuplicatePercentage float32 `yaml:"DUPLICATE_PERCENTAGE"`
@@ -29,6 +31,7 @@ func LoadConfigFromFile(path string) (EmailDeduperConfig, error) {
 	return config, err
 }
 
+// LoadConfig loads the config file
 func LoadConfig() (EmailDeduperConfig, error) {
 	return LoadConfigFromFile("config.yml")
 }

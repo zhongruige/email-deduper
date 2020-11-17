@@ -38,9 +38,9 @@ func generateEmails(emailCount int, dupePercentage float32) ([]string, error) {
 		emails = append(emails, fmt.Sprint(counter, "_email@gomail.com"))
 		for dupeCounter < dupeCount {
 			emails = append(emails, fmt.Sprint(counter, "_email@gomail.com"))
-			dupeCounter += 1
+			dupeCounter++
 		}
-		counter += 1
+		counter++
 	}
 
 	// Shuffle our emails before returning them
